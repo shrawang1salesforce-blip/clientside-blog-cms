@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f6f2">
+    <title>Fieldnotes — Blog desk</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="#" aria-label="Fieldnotes home">fieldnotes<span>.</span></a>
+      <span class="topbar-note">A small place for your ideas</span>
+      <span class="local-label"><span class="local-dot"></span> Saved on this device</span>
+    </header>
+
+    <main class="page">
+      <section class="welcome">
+        <div>
+          <p class="eyebrow">YOUR BLOG, AT A GLANCE</p>
+          <h1>The writing desk</h1>
+          <p class="welcome-copy">Make a little room for your next idea.</p>
+        </div>
+        <button class="button button-dark" id="new-post" type="button">
+          <span aria-hidden="true">＋</span> Write a post
+        </button>
+      </section>
+
+      <section class="stats" aria-label="Post totals">
+        <div class="stat"><span class="stat-number" id="total-count">0</span><span>All posts</span></div>
+        <div class="stat"><span class="stat-number" id="published-count">0</span><span>Published</span></div>
+        <div class="stat"><span class="stat-number" id="draft-count">0</span><span>Drafts</span></div>
+      </section>
+
+      <section class="posts-section" aria-labelledby="posts-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR COLLECTION</p>
+            <h2 id="posts-heading">Posts</h2>
+          </div>
+          <label class="filter-wrap">
+            <span class="visually-hidden">Filter posts by status</span>
+            <select id="status-filter">
+              <option value="all">Everything</option>
+              <option value="published">Published</option>
+              <option value="draft">Drafts</option>
+            </select>
+          </label>
+        </div>
+        <p class="notice" id="notice" role="status" hidden></p>
+        <div class="post-list" id="post-list"></div>
+      </section>
+      <footer class="page-footer">Your writing stays right here, in this browser.</footer>
+    </main>
+
+    <dialog class="post-dialog" id="editor">
+      <form id="post-form">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow" id="form-eyebrow">A NEW PAGE</p>
+            <h2 id="form-title">Write a post</h2>
+          </div>
+          <button class="icon-button" type="button" data-close aria-label="Close editor">×</button>
+        </div>
+        <label class="field-label" for="post-title">Title</label>
+        <input id="post-title" name="title" maxlength="100" placeholder="Give it a good title" required>
+        <label class="field-label" for="post-excerpt">A short introduction <span>optional</span></label>
+        <textarea id="post-excerpt" name="excerpt" rows="2" maxlength="220" placeholder="What is this post about?"></textarea>
+        <label class="field-label" for="post-content">Your post</label>
+        <textarea id="post-content" name="content" rows="9" placeholder="Start writing..." required></textarea>
+        <label class="field-label" for="post-status">Save as</label>
+        <select id="post-status" name="status">
+          <option value="draft">Draft</option>
+          <option value="published">Published</option>
+        </select>
+        <div class="form-actions">
+          <button class="button button-quiet" type="button" data-close>Cancel</button>
+          <button class="button button-dark" type="submit">Save post</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="post-dialog preview-dialog" id="preview">
+      <div class="dialog-heading">
+        <p class="eyebrow">POST PREVIEW</p>
+        <button class="icon-button" type="button" data-close aria-label="Close preview">×</button>
+      </div>
+      <article class="preview-article">
+        <p class="preview-date" id="preview-date"></p>
+        <h2 id="preview-title"></h2>
+        <p class="preview-excerpt" id="preview-excerpt"></p>
+        <div class="preview-content" id="preview-content"></div>
+      </article>
+    </dialog>
+  </body>
+</html>
