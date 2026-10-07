@@ -16,7 +16,9 @@ function readPosts() {
     return saved ? JSON.parse(saved) : [];
   } catch (error) {
     console.error("Couldn't read saved posts.", error);
-    showNotice("Your saved posts couldn't be read. Check your browser's storage settings.");
+    showNotice(
+      "Your saved posts couldn't be read. Check your browser's storage settings.",
+    );
     return [];
   }
 }
@@ -28,7 +30,9 @@ function savePosts() {
     return true;
   } catch (error) {
     console.error("Couldn't save posts.", error);
-    showNotice("This post couldn't be saved. Your browser may be out of storage.");
+    showNotice(
+      "This post couldn't be saved. Your browser may be out of storage.",
+    );
     return false;
   }
 }
@@ -39,8 +43,11 @@ function showNotice(message) {
 }
 
 function formatDate(timestamp) {
-  return new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", year: "numeric" })
-    .format(new Date(timestamp));
+  return new Intl.DateTimeFormat(undefined, {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(timestamp));
 }
 
 function makeAction(label, className, onClick) {
@@ -60,8 +67,12 @@ function renderPosts() {
 
   postList.replaceChildren();
   document.querySelector("#total-count").textContent = posts.length;
-  document.querySelector("#published-count").textContent = posts.filter((post) => post.status === "published").length;
-  document.querySelector("#draft-count").textContent = posts.filter((post) => post.status === "draft").length;
+  document.querySelector("#published-count").textContent = posts.filter(
+    (post) => post.status === "published",
+  ).length;
+  document.querySelector("#draft-count").textContent = posts.filter(
+    (post) => post.status === "draft",
+  ).length;
 
   if (!visiblePosts.length) {
     const empty = document.createElement("div");
@@ -124,8 +135,12 @@ function renderPosts() {
     actions.append(
       makeAction("Preview", "", () => openPreview(post)),
       makeAction("Edit", "", () => openEditor(post)),
-      makeAction(post.status === "published" ? "Make draft" : "Publish", "", () => toggleStatus(post.id)),
-      makeAction("Delete", "delete", () => deletePost(post.id))
+      makeAction(
+        post.status === "published" ? "Make draft" : "Publish",
+        "",
+        () => toggleStatus(post.id),
+      ),
+      makeAction("Delete", "delete", () => deletePost(post.id)),
     );
     card.append(main, actions);
     postList.append(card);
@@ -135,8 +150,12 @@ function renderPosts() {
 function openEditor(post) {
   editingId = post ? post.id : null;
   form.reset();
-  document.querySelector("#form-title").textContent = post ? "Edit your post" : "Write a post";
-  document.querySelector("#form-eyebrow").textContent = post ? "BACK TO THE PAGE" : "A NEW PAGE";
+  document.querySelector("#form-title").textContent = post
+    ? "Edit your post"
+    : "Write a post";
+  document.querySelector("#form-eyebrow").textContent = post
+    ? "BACK TO THE PAGE"
+    : "A NEW PAGE";
   form.elements.title.value = post ? post.title : "";
   form.elements.excerpt.value = post ? post.excerpt : "";
   form.elements.content.value = post ? post.content : "";
@@ -146,7 +165,8 @@ function openEditor(post) {
 }
 
 function openPreview(post) {
-  document.querySelector("#preview-date").textContent = `${post.status === "published" ? "Published" : "Draft"} · ${formatDate(post.updatedAt)}`;
+  document.querySelector("#preview-date").textContent =
+    `${post.status === "published" ? "Published" : "Draft"} · ${formatDate(post.updatedAt)}`;
   document.querySelector("#preview-title").textContent = post.title;
   document.querySelector("#preview-excerpt").textContent = post.excerpt;
   document.querySelector("#preview-excerpt").hidden = !post.excerpt;
@@ -172,7 +192,8 @@ function toggleStatus(id) {
 
 function deletePost(id) {
   const post = posts.find((item) => item.id === id);
-  if (!post || !window.confirm(`Delete “${post.title}”? This can't be undone.`)) return;
+  if (!post || !window.confirm(`Delete “${post.title}”? This can't be undone.`))
+    return;
 
   const previousPosts = posts;
   posts = posts.filter((item) => item.id !== id);
@@ -195,11 +216,11 @@ form.addEventListener("submit", (event) => {
     content: form.elements.content.value.trim(),
     status: form.elements.status.value,
     createdAt: existingPost ? existingPost.createdAt : now,
-    updatedAt: now
+    updatedAt: now,
   };
 
   if (existingPost) {
-    posts = posts.map((item) => item.id === editingId ? post : item);
+    posts = posts.map((item) => (item.id === editingId ? post : item));
   } else {
     posts = [...posts, post];
   }
@@ -212,7 +233,9 @@ form.addEventListener("submit", (event) => {
   }
 });
 
-document.querySelector("#new-post").addEventListener("click", () => openEditor());
+document
+  .querySelector("#new-post")
+  .addEventListener("click", () => openEditor());
 statusFilter.addEventListener("change", renderPosts);
 document.querySelectorAll("[data-close]").forEach((button) => {
   button.addEventListener("click", () => button.closest("dialog").close());

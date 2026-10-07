@@ -1,18 +1,18 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f7f6f2">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f6f2" />
     <title>Fieldnotes — Blog desk</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script src="app.js" defer></script>
   </head>
   <body>
     <header class="topbar">
-      <a class="wordmark" href="#" aria-label="Fieldnotes home">fieldnotes<span>.</span></a>
-      <span class="topbar-note">A small place for your ideas</span>
-      <span class="local-label"><span class="local-dot"></span> Saved on this device</span>
+      <a class="wordmark" href="#" aria-label="Fieldnotes home"
+        >fieldnotes<span>.</span></a
+      >
     </header>
 
     <main class="page">
@@ -28,9 +28,17 @@
       </section>
 
       <section class="stats" aria-label="Post totals">
-        <div class="stat"><span class="stat-number" id="total-count">0</span><span>All posts</span></div>
-        <div class="stat"><span class="stat-number" id="published-count">0</span><span>Published</span></div>
-        <div class="stat"><span class="stat-number" id="draft-count">0</span><span>Drafts</span></div>
+        <div class="stat">
+          <span class="stat-number" id="total-count">0</span
+          ><span>All posts</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" id="published-count">0</span
+          ><span>Published</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" id="draft-count">0</span><span>Drafts</span>
+        </div>
       </section>
 
       <section class="posts-section" aria-labelledby="posts-heading">
@@ -51,7 +59,9 @@
         <p class="notice" id="notice" role="status" hidden></p>
         <div class="post-list" id="post-list"></div>
       </section>
-      <footer class="page-footer">Your writing stays right here, in this browser.</footer>
+      <footer class="page-footer">
+        Your writing stays right here, in this browser.
+      </footer>
     </main>
 
     <dialog class="post-dialog" id="editor">
@@ -61,21 +71,50 @@
             <p class="eyebrow" id="form-eyebrow">A NEW PAGE</p>
             <h2 id="form-title">Write a post</h2>
           </div>
-          <button class="icon-button" type="button" data-close aria-label="Close editor">×</button>
+          <button
+            class="icon-button"
+            type="button"
+            data-close
+            aria-label="Close editor"
+          >
+            ×
+          </button>
         </div>
         <label class="field-label" for="post-title">Title</label>
-        <input id="post-title" name="title" maxlength="100" placeholder="Give it a good title" required>
-        <label class="field-label" for="post-excerpt">A short introduction <span>optional</span></label>
-        <textarea id="post-excerpt" name="excerpt" rows="2" maxlength="220" placeholder="What is this post about?"></textarea>
+        <input
+          id="post-title"
+          name="title"
+          maxlength="100"
+          placeholder="Give it a good title"
+          required
+        />
+        <label class="field-label" for="post-excerpt"
+          >A short introduction <span>optional</span></label
+        >
+        <textarea
+          id="post-excerpt"
+          name="excerpt"
+          rows="2"
+          maxlength="220"
+          placeholder="What is this post about?"
+        ></textarea>
         <label class="field-label" for="post-content">Your post</label>
-        <textarea id="post-content" name="content" rows="9" placeholder="Start writing..." required></textarea>
+        <textarea
+          id="post-content"
+          name="content"
+          rows="9"
+          placeholder="Start writing..."
+          required
+        ></textarea>
         <label class="field-label" for="post-status">Save as</label>
         <select id="post-status" name="status">
           <option value="draft">Draft</option>
           <option value="published">Published</option>
         </select>
         <div class="form-actions">
-          <button class="button button-quiet" type="button" data-close>Cancel</button>
+          <button class="button button-quiet" type="button" data-close>
+            Cancel
+          </button>
           <button class="button button-dark" type="submit">Save post</button>
         </div>
       </form>
@@ -84,7 +123,14 @@
     <dialog class="post-dialog preview-dialog" id="preview">
       <div class="dialog-heading">
         <p class="eyebrow">POST PREVIEW</p>
-        <button class="icon-button" type="button" data-close aria-label="Close preview">×</button>
+        <button
+          class="icon-button"
+          type="button"
+          data-close
+          aria-label="Close preview"
+        >
+          ×
+        </button>
       </div>
       <article class="preview-article">
         <p class="preview-date" id="preview-date"></p>
